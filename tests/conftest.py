@@ -1,10 +1,14 @@
 import os
+from dotenv import load_dotenv
+
 import requests
 import pytest
 
-url = os.getenv("URL")
-username = os.getenv("USERNAME")
-password = os.getenv("PASSWORD")
+load_dotenv()
+
+url = os.getenv("TEST_URL")
+username = os.getenv("TEST_USERNAME")
+password = os.getenv("TEST_PASSWORD")
 
 @pytest.fixture(scope="session")
 def authenticate():

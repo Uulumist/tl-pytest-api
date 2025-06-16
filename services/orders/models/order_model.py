@@ -2,7 +2,6 @@ from pydantic import BaseModel, field_validator
 
 class OrderModel(BaseModel):
     status: str
-    courierId: int
     customerName: str
     customerPhone: str
     comment: str
