@@ -2,6 +2,8 @@ import allure
 import pytest
 
 from services.orders.api_orders import OrdersAPI
+from tests.conftest import authenticate
+
 number_of_orders=10
 
 @allure.epic("Order Operations")
@@ -9,10 +11,7 @@ number_of_orders=10
 
 class TestOrders:
 
-        @pytest.fixture(autouse=True)
-        def cleanup_orders(self, authenticate):
-            api = OrdersAPI(token=authenticate)
-            api.delete_all_orders()
+
 
         @pytest.mark.orders
         @allure.title("Create new order")

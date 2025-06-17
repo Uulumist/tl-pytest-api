@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import requests
 import pytest
 
+from services.orders.api_orders import OrdersAPI
+
 load_dotenv()
 
 url = os.getenv("TEST_URL")
@@ -27,3 +29,8 @@ def authenticate():
             pytest.fail("❌ Authentication failed: No token found in response.")
     else:
         pytest.fail(f"❌ Failed to authenticate. Status: {response.status_code}, Response: {response.text}")
+
+@pytest.fixture(autouse=True)
+def cleanup_orders(authenticate):
+    api = OrdersAPI(token=authenticate)
+    api.delete_all_orders()

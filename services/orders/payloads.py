@@ -14,9 +14,3 @@ class Payloads:
             "comment": fake.word(),
             "id": fake.random_int(min=1, max=99)
         }
-
-    @staticmethod
-    def generate_n_orders(n):
-        return [Payloads.create_order() for _ in range(n)]
-
-

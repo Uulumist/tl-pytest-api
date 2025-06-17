@@ -1,11 +1,13 @@
 import os
 
-url = os.getenv("TEST_URL")
-
 class Endpoints:
+    def __init__(self):
+        url = os.getenv("TEST_URL")
+        if not url:
+            raise ValueError("❌ TEST_URL is not set in environment!")
 
-    create_order = f"{url}/orders"
-    get_all_orders = f"{url}/orders"
-    get_order_by_id = lambda self, orderid: f"{url}/orders/{orderid}"
-    delete_order_by_id = lambda self, orderid: f"{url}/orders/{orderid}"
-    get_deleted_order_by_id = lambda self, orderid: f"{url}/orders/{orderid}"
+        self.create_order = f"{url}/orders"
+        self.get_all_orders = f"{url}/orders"
+        self.get_order_by_id = lambda orderid: f"{url}/orders/{orderid}"
+        self.delete_order_by_id = lambda orderid: f"{url}/orders/{orderid}"
+        self.get_deleted_order_by_id = lambda orderid: f"{url}/orders/{orderid}"
